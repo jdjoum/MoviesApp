@@ -1,0 +1,134 @@
+package com.example.movies;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class SecondActivity extends AppCompatActivity {
+    //Creating private variables for each of the activity elements based on type
+    private EditText etMovie;
+    private Button btnSearch;
+    private Button btnPoster;
+    private TextView tvTitle;
+    private TextView tvGenre;
+    private TextView tvYear;
+    private TextView tvTime;
+    private WebView wvPoster;
+
+    //String Variable to hold the userInput
+    String userInput;
+    //String Variable to hold the Poster URL
+    public static String savedPoster;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+
+        //Obtaining references for each of the activity page elements
+        etMovie = (EditText)findViewById(R.id.etMovie);
+        tvTitle = (TextView)findViewById(R.id.tvTitle);
+        tvGenre = (TextView)findViewById(R.id.tvGenre);
+        tvYear = (TextView)findViewById(R.id.tvYear);
+        tvTime = (TextView)findViewById(R.id.tvTime);
+        btnSearch = (Button)findViewById(R.id.btnSearch);
+        btnPoster = (Button)findViewById(R.id.btnPoster);
+        //wvPoster = (WebView)findViewById(R.id.wvPoster);
+
+        //Set the Poster Button to unclickable initially
+        btnPoster.setEnabled(false);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Defines what happens when the search button is pressed
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userInput = etMovie.getText().toString();
+                useAPI(userInput);
+                btnPoster.setEnabled(true);
+            }
+        });
+
+        //Defines what happens when the poster button is pressed
+        btnPoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPoster();
+            }
+        });
+    }
+
+    public void useAPI(String userInput){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        String URL = "https://www.omdbapi.com/?i=tt3896198&apikey=1f7c368&t=" + userInput;
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    public void onResponse(JSONObject response){
+                        try{
+                            String Title = response.getString("Title");
+                            String Genre = response.getString("Genre");
+                            String Year = response.getString("Year");
+                            String Time = response.getString("Runtime");
+                            String Poster = response.getString("Poster");
+                            savedPoster = Poster;
+                            tvTitle.setText("Title: " + Title);
+                            tvGenre.setText("Genre: " + Genre);
+                            tvYear.setText("Year of Release: " + Year);
+                            tvTime.setText("Duration: " + Time);
+                            //savePosterURL(Poster);
+                            //loadImageFromURL(Poster);
+                        }catch(JSONException e){
+                            tvGenre.setText("Exception");
+                            e.printStackTrace();
+                        }
+                        Log.e("Rest JSON Response: ", response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Rest JSON Response: ", error.toString());
+                    }
+                }
+        );
+        requestQueue.add(objectRequest);
+    }
+
+    public void loadImageFromURL(String URL){
+        //wvPoster.loadUrl(URL);
+    }
+
+    public String savePosterURL(String posterURL) {
+        return posterURL;
+    }
+
+    public void goToPoster(){
+        //Go from one activity page to a new one
+        //1st Parameter = src.this // 2nd Parameter = dst.class
+        Intent intent  = new Intent(SecondActivity.this, MoviePoster.class);
+        //Call of startActivity passing it the intent (Loading the new activity page)
+        startActivity(intent);
+    }
+}
