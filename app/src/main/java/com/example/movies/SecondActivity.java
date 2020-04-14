@@ -26,16 +26,19 @@ public class SecondActivity extends AppCompatActivity {
     private EditText etMovie;
     private Button btnSearch;
     private Button btnPoster;
+    private Button btnFavorite;
     private TextView tvTitle;
     private TextView tvGenre;
     private TextView tvYear;
     private TextView tvTime;
-    private WebView wvPoster;
+
 
     //String Variable to hold the userInput
     String userInput;
     //String Variable to hold the Poster URL
     public static String savedPoster;
+    //String Variable to hold the Movie Title
+    public static String savedTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,28 +53,38 @@ public class SecondActivity extends AppCompatActivity {
         tvTime = (TextView)findViewById(R.id.tvTime);
         btnSearch = (Button)findViewById(R.id.btnSearch);
         btnPoster = (Button)findViewById(R.id.btnPoster);
-        //wvPoster = (WebView)findViewById(R.id.wvPoster);
+        btnFavorite = (Button)findViewById(R.id.btnFavorite);
 
-        //Set the Poster Button to unclickable initially
+        //Set the Poster and Favorite Buttons to unclickable initially
         btnPoster.setEnabled(false);
+        btnFavorite.setEnabled(false);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        //Defines what happens when the search button is pressed
+        //Defines what happens when the Search Button is pressed
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userInput = etMovie.getText().toString();
                 useAPI(userInput);
                 btnPoster.setEnabled(true);
+                btnFavorite.setEnabled(true);
             }
         });
 
-        //Defines what happens when the poster button is pressed
+        //Defines what happens when the Poster Button is pressed
         btnPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToPoster();
+            }
+        });
+
+        //Defines what happens when the Favorite Button is pressed
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFavoriteList();
             }
         });
     }
@@ -88,18 +101,16 @@ public class SecondActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject response){
                         try{
-                            String Title = response.getString("Title");
+                            //Obtaining Data from the API
+                            savedTitle = response.getString("Title");
                             String Genre = response.getString("Genre");
                             String Year = response.getString("Year");
                             String Time = response.getString("Runtime");
-                            String Poster = response.getString("Poster");
-                            savedPoster = Poster;
-                            tvTitle.setText("Title: " + Title);
+                            savedPoster = response.getString("Poster");
+                            tvTitle.setText("Title: " + savedTitle);
                             tvGenre.setText("Genre: " + Genre);
                             tvYear.setText("Year of Release: " + Year);
                             tvTime.setText("Duration: " + Time);
-                            //savePosterURL(Poster);
-                            //loadImageFromURL(Poster);
                         }catch(JSONException e){
                             tvGenre.setText("Exception");
                             e.printStackTrace();
@@ -116,18 +127,18 @@ public class SecondActivity extends AppCompatActivity {
         requestQueue.add(objectRequest);
     }
 
-    public void loadImageFromURL(String URL){
-        //wvPoster.loadUrl(URL);
-    }
-
-    public String savePosterURL(String posterURL) {
-        return posterURL;
-    }
-
     public void goToPoster(){
         //Go from one activity page to a new one
         //1st Parameter = src.this // 2nd Parameter = dst.class
         Intent intent  = new Intent(SecondActivity.this, MoviePoster.class);
+        //Call of startActivity passing it the intent (Loading the new activity page)
+        startActivity(intent);
+    }
+
+    public void goToFavoriteList(){
+        //Go from one activity page to a new one
+        //1st Parameter = src.this // 2nd Parameter = dst.class
+        Intent intent  = new Intent(SecondActivity.this, FavoriteList.class);
         //Call of startActivity passing it the intent (Loading the new activity page)
         startActivity(intent);
     }
