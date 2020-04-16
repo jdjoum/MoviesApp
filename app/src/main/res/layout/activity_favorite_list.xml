@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".FavoriteList">
 
     <TextView
@@ -27,7 +28,9 @@
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Back" />
+            android:text="Back"
+            android:textColor="@color/login_form_details_medium"
+            android:background="@drawable/btn_bg"/>
 
     </LinearLayout>
 
