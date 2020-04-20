@@ -45,6 +45,5 @@ public class FileHelper {
         }
 
         return itemsList;
-
     }
 }

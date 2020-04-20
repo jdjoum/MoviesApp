@@ -56,7 +56,6 @@ public class FavoriteList extends AppCompatActivity implements AdapterView.OnIte
 
         //Defines what happens when an item in the list is clicked
         lvFavorite.setOnItemClickListener(this);
-
     }
 
     public void addFavorite(String movieTitle){

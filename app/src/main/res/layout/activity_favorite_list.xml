@@ -9,13 +9,6 @@
     android:background="@drawable/background"
     tools:context=".FavoriteList">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="336dp"
-        android:layout_height="13dp"
-        android:layout_weight="2"
-        android:text="Favorite Movie List" />
-
     <LinearLayout
         android:layout_width="211dp"
         android:layout_height="wrap_content"

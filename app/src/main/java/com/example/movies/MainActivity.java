@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText Password;
     private TextView Info;
     private Button Login;
+    private CheckBox cbShowPassword;
 
     //Creating a private counter variable for attempts left
     private int counter = 5;
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Password = (EditText)findViewById(R.id.etPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
         Login = (Button)findViewById(R.id.btnLogin);
+        cbShowPassword = (CheckBox)findViewById(R.id.cbShowPasword);
 
         //Showing that the number of attempts left is 5 initially
         Info.setText("Number of Attempts Left: " + String.valueOf(counter));
@@ -37,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validate(Name.getText().toString(), Password.getText().toString());
+            }
+        });
+
+        //Defines what happens when the show password checkbox is checked
+        cbShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else{
+                    Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
             }
         });
 
