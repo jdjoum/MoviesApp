@@ -2,6 +2,7 @@ package com.example.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.movies.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +36,7 @@ public class FavoriteList extends AppCompatActivity implements AdapterView.OnIte
 
         items = FileHelper.readData(this);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        adapter = new ArrayAdapter<String>(this, R.layout.row, items);
         lvFavorite.setAdapter(adapter);
 
         //Add the Favorite Movie to the List

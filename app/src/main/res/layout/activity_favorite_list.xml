@@ -9,6 +9,22 @@
     android:background="@drawable/background"
     tools:context=".FavoriteList">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Favorite Movies List"
+            android:textStyle="bold"
+            android:textColor="@color/login_form_details"
+            android:textSize="30dp" />
+    </RelativeLayout>
+
+
     <LinearLayout
         android:layout_width="211dp"
         android:layout_height="wrap_content"
@@ -18,20 +34,18 @@
 
         <Button
             android:id="@+id/btnBack2"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
             android:layout_weight="2"
+            android:background="@drawable/btn_bg"
             android:text="Back"
-            android:textColor="@color/login_form_details_medium"
-            android:background="@drawable/btn_bg"/>
+            android:textColor="@color/login_form_details_medium" />
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/lvFavorite"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="516dp"
         android:layout_marginBottom="12dp" />
-
-
 </LinearLayout>

@@ -112,7 +112,10 @@ public class SecondActivity extends AppCompatActivity {
                             tvYear.setText("Year of Release: " + Year);
                             tvTime.setText("Duration: " + Time);
                         }catch(JSONException e){
-                            tvGenre.setText("Exception");
+                            tvTitle.setText("Movie");
+                            tvGenre.setText("Not");
+                            tvYear.setText("Found");
+                            tvTime.setText("Please try again.");
                             e.printStackTrace();
                         }
                         Log.e("Rest JSON Response: ", response.toString());
