@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     //Creating private variables for each of the activity elements based on type
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             if(counter == 0){
                 //Disables the button when the  failed attempts counter reaches 0
                 Login.setEnabled(false);
+                Toast.makeText(this, "Out of Attempts", Toast.LENGTH_SHORT).show();
             }
         }
     }

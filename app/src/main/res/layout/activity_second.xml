@@ -7,16 +7,37 @@
     android:background="@drawable/background"
     tools:context=".SecondActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:text="Movie Search"
+        android:textColor="@color/login_form_details"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <EditText
         android:id="@+id/etMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:hint="Enter a Movie Name..."
-        android:textColorHint="@color/login_form_details"
-        android:textColor="@color/login_form_details"
+        android:gravity="center"
         android:inputType="textPersonName"
+        android:textColor="@color/login_form_details"
+        android:textColorHint="@color/login_form_details"
+        android:backgroundTint="@color/login_form_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,35 +49,35 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/btn_bg"
         android:text="@android:string/search_go"
-        android:textColor="@color/login_form_details_medium"
+        android:textColor="@color/login_form_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etMovie"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
         android:id="@+id/btnPoster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="356dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/btn_bg"
         android:text="Poster"
-        android:textColor="@color/login_form_details_medium"
+        android:textColor="@color/login_form_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <Button
         android:id="@+id/btnFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Favorite"
-        android:textColor="@color/login_form_details_medium"
         android:background="@drawable/btn_bg"
+        android:text="Favorite"
+        android:textColor="@color/login_form_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -68,11 +89,11 @@
         android:id="@+id/tableLayout"
         android:layout_width="384dp"
         android:layout_height="193dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch">
 
         <TableRow>
 
@@ -83,6 +104,7 @@
                 android:layout_marginTop="13dp"
                 android:text="Movie Title"
                 android:textSize="20sp"
+                android:textColor="@color/login_form_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +120,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Genre"
                 android:textSize="20sp"
+                android:textColor="@color/login_form_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,6 +136,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Year"
                 android:textSize="20sp"
+                android:textColor="@color/login_form_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.067"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +154,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Duration"
                 android:textSize="20sp"
+                android:textColor="@color/login_form_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.067"
                 app:layout_constraintStart_toStartOf="parent"

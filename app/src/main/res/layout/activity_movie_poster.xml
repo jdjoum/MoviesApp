@@ -32,7 +32,7 @@
         android:layout_marginEnd="307dp"
         android:layout_marginRight="307dp"
         android:text="Back"
-        android:textColor="@color/login_form_details_medium"
+        android:textColor="@color/login_form_details"
         android:background="@drawable/btn_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

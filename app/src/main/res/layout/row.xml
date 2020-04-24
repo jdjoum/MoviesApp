@@ -2,9 +2,8 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:textSize="15sp"
+    android:textSize="23dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:textColor="#FFFFFF"
     tools:context=".MainActivity"/>
