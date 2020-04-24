@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 //Disables the button when the  failed attempts counter reaches 0
                 Login.setEnabled(false);
                 Toast.makeText(this, "Out of Attempts", Toast.LENGTH_SHORT).show();
+
             }
         }
     }

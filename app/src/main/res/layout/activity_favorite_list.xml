@@ -9,6 +9,7 @@
     android:background="@drawable/background"
     tools:context=".FavoriteList">
 
+
     <TextView
         android:id="@+id/tvHeader"
         android:layout_width="match_parent"

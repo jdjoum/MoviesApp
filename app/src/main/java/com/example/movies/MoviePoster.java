@@ -49,6 +49,7 @@ public class MoviePoster extends AppCompatActivity {
         });
     }
 
+
     public void loadImageFromURL(String URL){
         wvPoster.loadUrl(URL);
     }

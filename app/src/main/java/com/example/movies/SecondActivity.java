@@ -32,7 +32,6 @@ public class SecondActivity extends AppCompatActivity {
     private TextView tvYear;
     private TextView tvTime;
 
-
     //String Variable to hold the userInput
     String userInput;
     //String Variable to hold the Poster URL
