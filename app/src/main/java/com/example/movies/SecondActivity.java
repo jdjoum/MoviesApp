@@ -56,7 +56,7 @@ public class SecondActivity extends AppCompatActivity {
 
         //Set the Poster and Favorite Buttons to unclickable initially
         btnPoster.setEnabled(false);
-        btnFavorite.setEnabled(false);
+        //btnFavorite.setEnabled(false);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -67,7 +67,7 @@ public class SecondActivity extends AppCompatActivity {
                 userInput = etMovie.getText().toString();
                 useAPI(userInput);
                 btnPoster.setEnabled(true);
-                btnFavorite.setEnabled(true);
+                //btnFavorite.setEnabled(true);
             }
         });
 

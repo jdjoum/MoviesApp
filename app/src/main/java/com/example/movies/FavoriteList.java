@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.movies.R;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,13 +35,20 @@ public class FavoriteList extends AppCompatActivity implements AdapterView.OnIte
         btnBack2 = (Button)findViewById(R.id.btnBack2);
         lvFavorite = (ListView)findViewById(R.id.lvFavorite);
 
-        items = FileHelper.readData(this);
-
-        adapter = new ArrayAdapter<String>(this, R.layout.row, items);
-        lvFavorite.setAdapter(adapter);
-
-        //Add the Favorite Movie to the List
-        addFavorite(userTitle);
+        if(SecondActivity.savedTitle != null) {
+            Log.d("myTag", SecondActivity.savedTitle);
+            //Add the Favorite Movie to the List
+            addFavorite(userTitle);
+        }else if(SecondActivity.savedTitle == null || SecondActivity.savedTitle.isEmpty())
+        {
+            //Load the Favorite Movies List when the user hasn't entered a title
+            items = FileHelper.readData(this);
+            adapter = new ArrayAdapter<String>(this, R.layout.row, items);
+            lvFavorite.setAdapter(adapter);
+            FileHelper.writeData(items, this);
+            Toast.makeText(this, "Welcome to your Favorite Movies List!", Toast.LENGTH_SHORT).show();
+            Log.d("myTag", "WELCOME NOTE");
+        }
 
         //Defines what happens when the back button is pressed
         btnBack2.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +67,14 @@ public class FavoriteList extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void addFavorite(String movieTitle){
+        items = FileHelper.readData(this);
+        adapter = new ArrayAdapter<String>(this, R.layout.row, items);
+        lvFavorite.setAdapter(adapter);
         adapter.add(movieTitle);
         FileHelper.writeData(items, this);
         Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
+        //Reset the userTitle
+        SecondActivity.savedTitle = null;
     }
 
     @Override
