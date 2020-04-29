@@ -60,16 +60,15 @@
 
     <Button
         android:id="@+id/btnPoster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="77dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="316dp"
         android:background="@drawable/btn_bg"
         android:text="Poster"
         android:textColor="@color/login_form_details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
 
     <Button
         android:id="@+id/btnFavorite"
@@ -88,11 +87,10 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="384dp"
-        android:layout_height="193dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="383dp"
+        android:layout_height="332dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSearch">
 
@@ -104,8 +102,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:text="Movie Title"
-                android:textSize="20sp"
                 android:textColor="@color/login_form_details"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,8 +118,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Genre"
-                android:textSize="20sp"
                 android:textColor="@color/login_form_details"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.069"
                 app:layout_constraintStart_toStartOf="parent"
@@ -136,8 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Year"
-                android:textSize="20sp"
                 android:textColor="@color/login_form_details"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.067"
                 app:layout_constraintStart_toStartOf="parent"
@@ -154,12 +152,48 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Duration"
-                android:textSize="20sp"
                 android:textColor="@color/login_form_details"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.067"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="397dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvActors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Actors"
+                android:textColor="@color/login_form_details"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.067"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="397dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvDirector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Director"
+                android:textColor="@color/login_form_details"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.067"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvActors" />
         </TableRow>
 
     </TableLayout>

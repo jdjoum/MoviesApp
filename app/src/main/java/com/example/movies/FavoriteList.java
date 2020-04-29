@@ -37,7 +37,7 @@ public class FavoriteList extends AppCompatActivity implements AdapterView.OnIte
 
         if(SecondActivity.savedTitle != null) {
             Log.d("myTag", SecondActivity.savedTitle);
-            //Add the Favorite Movie to the List
+            //Add the Favorite Movie to the List when the user has entered a title
             addFavorite(userTitle);
         }else if(SecondActivity.savedTitle == null || SecondActivity.savedTitle.isEmpty())
         {

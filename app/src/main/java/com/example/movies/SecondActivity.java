@@ -31,6 +31,9 @@ public class SecondActivity extends AppCompatActivity {
     private TextView tvGenre;
     private TextView tvYear;
     private TextView tvTime;
+    private TextView tvActors;
+    private TextView tvDirector;
+
 
     //String Variable to hold the userInput
     String userInput;
@@ -50,6 +53,8 @@ public class SecondActivity extends AppCompatActivity {
         tvGenre = (TextView)findViewById(R.id.tvGenre);
         tvYear = (TextView)findViewById(R.id.tvYear);
         tvTime = (TextView)findViewById(R.id.tvTime);
+        tvActors = (TextView)findViewById(R.id.tvActors);
+        tvDirector = (TextView)findViewById(R.id.tvDirector);
         btnSearch = (Button)findViewById(R.id.btnSearch);
         btnPoster = (Button)findViewById(R.id.btnPoster);
         btnFavorite = (Button)findViewById(R.id.btnFavorite);
@@ -105,16 +110,23 @@ public class SecondActivity extends AppCompatActivity {
                             String Genre = response.getString("Genre");
                             String Year = response.getString("Year");
                             String Time = response.getString("Runtime");
+                            String Actors = response.getString("Actors");
+                            String Director = response.getString("Director");
                             savedPoster = response.getString("Poster");
                             tvTitle.setText("Title: " + savedTitle);
                             tvGenre.setText("Genre: " + Genre);
                             tvYear.setText("Year of Release: " + Year);
                             tvTime.setText("Duration: " + Time);
+                            tvActors.setText("Actors: " + Actors);
+                            tvDirector.setText("Director: " + Director);
                         }catch(JSONException e){
                             tvTitle.setText("Movie");
                             tvGenre.setText("Not");
                             tvYear.setText("Found");
                             tvTime.setText("Please try again.");
+                            tvActors.setText("- Movie Mania");
+                            tvDirector.setText("");
+
                             e.printStackTrace();
                         }
                         Log.e("Rest JSON Response: ", response.toString());
