@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class FileHelper {
-
+    //File that handles the list data modifications
     public static final String FILENAME  = "listinfo.dat";
 
     public static void writeData(ArrayList<String> items, Context context){

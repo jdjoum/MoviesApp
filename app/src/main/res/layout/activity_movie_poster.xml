@@ -10,7 +10,7 @@
 
     <WebView
         android:id="@+id/wvPoster"
-        android:layout_width="410dp"
+        android:layout_width="420dp"
         android:layout_height="633dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
