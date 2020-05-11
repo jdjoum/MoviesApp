@@ -31,38 +31,23 @@
         android:id="@+id/etMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="@color/login_form_details"
         android:ems="10"
-        android:hint="Enter a Movie Name..."
         android:gravity="center"
+        android:hint="Enter a Movie Name..."
         android:inputType="textPersonName"
         android:textColor="@color/login_form_details"
         android:textColorHint="@color/login_form_details"
-        android:backgroundTint="@color/login_form_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/btn_bg"
-        android:text="@android:string/search_go"
-        android:textColor="@color/login_form_details"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etMovie"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <Button
         android:id="@+id/btnPoster"
         android:layout_width="77dp"
         android:layout_height="56dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="376dp"
         android:background="@drawable/btn_bg"
         android:text="Poster"
         android:textColor="@color/login_form_details"
@@ -70,27 +55,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
 
-    <Button
-        android:id="@+id/btnFavorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_bg"
-        android:text="Favorite"
-        android:textColor="@color/login_form_details"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPoster"
-        app:layout_constraintVertical_bias="0.006" />
-
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="383dp"
         android:layout_height="332dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSearch">
 
@@ -197,5 +166,49 @@
         </TableRow>
 
     </TableLayout>
+
+    <Button
+        android:id="@+id/btnFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_bg"
+        android:text="Favorite"
+        android:textColor="@color/login_form_details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPoster"
+        app:layout_constraintVertical_bias="0.062" />
+
+    <RatingBar
+        android:id="@+id/rbRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btnPoster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:progressTint="#FFFFFF"
+
+        />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/btn_bg"
+        android:text="@android:string/search_go"
+        android:textColor="@color/login_form_details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etMovie"
+        app:layout_constraintVertical_bias="0.017" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

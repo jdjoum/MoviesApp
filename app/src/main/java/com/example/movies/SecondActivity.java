@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,14 +38,22 @@ public class SecondActivity extends AppCompatActivity {
     private TextView tvTime;
     private TextView tvActors;
     private TextView tvDirector;
+    private RatingBar rbRatingBar;
 
 
     //String Variable to hold the userInput
     String userInput;
+    public static int index;
+    public static int numRatings = 0;
+    public static boolean reloadRating = false;
     //String Variable to hold the Poster URL
     public static String savedPoster;
     //String Variable to hold the Movie Title
     public static String savedTitle;
+    //ArrayList String for the ratings
+    public static ArrayList<String> ratings = new ArrayList<>();
+    //ArrayList String for the titles
+    public static ArrayList<String> titles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +71,36 @@ public class SecondActivity extends AppCompatActivity {
         btnSearch = (Button)findViewById(R.id.btnSearch);
         btnPoster = (Button)findViewById(R.id.btnPoster);
         btnFavorite = (Button)findViewById(R.id.btnFavorite);
+        rbRatingBar = findViewById(R.id.rbRating);
 
         //Set the Poster and Favorite Buttons to unclickable initially
         btnPoster.setEnabled(false);
-        //btnFavorite.setEnabled(false);
+        //Set the Rating Bar to unclickable initially
+        rbRatingBar.setEnabled(false);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Defines what happens when the Rating Bar is pressed
+        rbRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                numRatings++;
+                String rateValue = String.valueOf(rbRatingBar.getRating());
+
+                //If the rating is not reset to 0.0 for a new movie title, save the rating
+                if(!rateValue.equals("0.0") && reloadRating == false) {
+                    Log.d("(myTag)", "User Rated " + savedTitle + " " + rateValue + "/5.0");
+                    saveRating(ratings, titles, rateValue, savedTitle);
+                }
+                /*
+                //Log what's inside the titles and ratings arraylists
+                for(int i = 0; i < titles.size(); i++){
+                    Log.d("(myTag) Titles list " + i, titles.get(i));
+                    Log.d("(myTag) Ratings list " + i, ratings.get(i));
+                }*/
+            }
+        });
 
         //Defines what happens when the Search Button is pressed
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +109,6 @@ public class SecondActivity extends AppCompatActivity {
                 userInput = etMovie.getText().toString();
                 useAPI(userInput);
                 btnPoster.setEnabled(true);
-                //btnFavorite.setEnabled(true);
             }
         });
 
@@ -95,6 +129,38 @@ public class SecondActivity extends AppCompatActivity {
         });
     }
 
+    //Reload  a movie that has already been rated
+    public boolean reloadRating(ArrayList<String> ratings, ArrayList<String> titles){
+        reloadRating = false;
+        //Reload the rated movie
+        for (int i = titles.size()-1; i >= 0; i--) {
+            if(savedTitle.equals(titles.get(i))) {
+                Log.d("(myTag)", "The movie rating needs to be reloaded");
+                reloadRating = true;
+                index = i;
+                Log.d("(myTag)", String.valueOf(i));
+                //Reload the previous rating to the rating bar, if a movie is researched
+                setRating(ratings, index);
+                break;
+            }
+        }
+        return reloadRating;
+    }
+
+    //Save the user's rating into the lists
+    public void saveRating(ArrayList<String> savedRatings, ArrayList<String> savedTitles,String userRating, String movieTitle){
+        savedRatings.add(userRating);
+        savedTitles.add(movieTitle);
+        Log.d("(myTag)", "Movie Rating "+ savedRatings.size() +" Saved to Lists");
+    }
+
+    public void setRating(ArrayList<String> ratings, int index){
+        String tempRating = ratings.get(index);
+        float floatRating=Float.parseFloat(tempRating);
+        rbRatingBar.setRating(floatRating);
+        //Toast.makeText(SecondActivity.this, "Movie Rating Reloaded" + floatRating, Toast.LENGTH_SHORT).show();
+    }
+
     public void useAPI(String userInput){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -109,6 +175,18 @@ public class SecondActivity extends AppCompatActivity {
                         try{
                             //Obtaining Data from the API
                             savedTitle = response.getString("Title");
+                            //Check if the movie rating needs to be reloaded, if yes reload it
+                            boolean reload = reloadRating(ratings, titles);
+                            if(reload == true){
+                                rbRatingBar.setEnabled(true);
+                            }
+                            //If no, set the rating bar to 0
+                            if(reload == false) {
+                                Log.d("(myTag)", "No reload about to be rated for the first time");
+                                rbRatingBar.setEnabled(true);
+                                //Reset the rating bar to 0.0
+                                rbRatingBar.setRating(0);
+                            }
                             String Genre = response.getString("Genre");
                             String Year = response.getString("Year");
                             String Time = response.getString("Runtime");
