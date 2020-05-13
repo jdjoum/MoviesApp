@@ -93,12 +93,6 @@ public class SecondActivity extends AppCompatActivity {
                     Log.d("(myTag)", "User Rated " + savedTitle + " " + rateValue + "/5.0");
                     saveRating(ratings, titles, rateValue, savedTitle);
                 }
-                /*
-                //Log what's inside the titles and ratings arraylists
-                for(int i = 0; i < titles.size(); i++){
-                    Log.d("(myTag) Titles list " + i, titles.get(i));
-                    Log.d("(myTag) Ratings list " + i, ratings.get(i));
-                }*/
             }
         });
 
@@ -156,7 +150,7 @@ public class SecondActivity extends AppCompatActivity {
 
     public void setRating(ArrayList<String> ratings, int index){
         String tempRating = ratings.get(index);
-        float floatRating=Float.parseFloat(tempRating);
+        float floatRating = Float.parseFloat(tempRating);
         rbRatingBar.setRating(floatRating);
         //Toast.makeText(SecondActivity.this, "Movie Rating Reloaded" + floatRating, Toast.LENGTH_SHORT).show();
     }
@@ -177,8 +171,23 @@ public class SecondActivity extends AppCompatActivity {
                             savedTitle = response.getString("Title");
                             //Check if the movie rating needs to be reloaded, if yes reload it
                             boolean reload = reloadRating(ratings, titles);
+                            //Saves new ratings to lists after the Movie Search page is returned to
                             if(reload == true){
                                 rbRatingBar.setEnabled(true);
+                                rbRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+                                    @Override
+                                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                                        numRatings++;
+                                        String rateValue = String.valueOf(rbRatingBar.getRating());
+                                        Log.d("(myTag)", "The Current Rate Value is: " + rateValue + "/5.0");
+                                        //If the rating is not reset to 0.0 for a new movie title, save the rating
+                                        if(!rateValue.equals("0.0")) {
+                                            Log.d("(myTag)", "User Rated " + savedTitle + " " + rateValue + "/5.0");
+                                            saveRating(ratings, titles, rateValue, savedTitle);
+                                        }
+                                    }
+                                });
                             }
                             //If no, set the rating bar to 0
                             if(reload == false) {
