@@ -100,9 +100,20 @@ public class SecondActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userInput = etMovie.getText().toString();
-                useAPI(userInput);
-                btnPoster.setEnabled(true);
+                try{
+                    userInput = etMovie.getText().toString();
+                    useAPI(userInput);
+                }catch (Exception e){
+                    btnPoster.setEnabled(false);
+                    tvTitle.setText("Movie");
+                    tvGenre.setText("Not");
+                    tvYear.setText("Found");
+                    tvTime.setText("Please try again.");
+                    tvActors.setText("- Movie Mania");
+                    tvDirector.setText("");
+
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -208,6 +219,7 @@ public class SecondActivity extends AppCompatActivity {
                             tvTime.setText("Duration: " + Time);
                             tvActors.setText("Actors: " + Actors);
                             tvDirector.setText("Director: " + Director);
+                            btnPoster.setEnabled(true);
                         }catch(JSONException e){
                             tvTitle.setText("Movie");
                             tvGenre.setText("Not");
