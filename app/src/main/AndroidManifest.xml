@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.movies">
+    package="com.jdjoum.movies">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,18 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
+        <activity android:name="com.jdjoum.movies.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FavoriteList" />
-        <activity android:name=".MoviePoster" />
+        <activity android:name="com.jdjoum.movies.FavoriteList" />
+        <activity android:name="com.jdjoum.movies.MoviePoster" />
         <activity android:name=".activity_poster" />
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.jdjoum.movies.SecondActivity" />
+        <activity android:name="com.jdjoum.movies.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

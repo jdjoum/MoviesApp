@@ -1,8 +1,8 @@
-package com.example.movies;
+package com.jdjoum.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.movies.R;
+import com.jdjoum.movies.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;

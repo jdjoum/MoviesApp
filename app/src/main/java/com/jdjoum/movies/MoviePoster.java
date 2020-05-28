@@ -1,4 +1,4 @@
-package com.example.movies;
+package com.jdjoum.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,13 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 
 public class MoviePoster extends AppCompatActivity {
     //Creating private variables for each of the activity elements based on type

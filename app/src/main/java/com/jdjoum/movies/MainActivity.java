@@ -1,4 +1,4 @@
-package com.example.movies;
+package com.jdjoum.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
